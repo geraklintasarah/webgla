@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Gerak Lintas Arah - Jasa Import Terpercaya</title>
+    
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-blue: #0047AB; 
+            --dark-blue: #002e70;
+            --accent-color: #fca311; 
+            --wa-color: #25D366;     
+            --text-white: #ffffff;
+            --text-dark: #333333;
+            --bg-light: #f4f7f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--primary-blue);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .logo-img {
+            /* REVISI LOGO: */
+            height: 50px; /* Ukuran diperbesar sedikit biar pas */
+            border-radius: 8px; /* Membuat sudut kotak putih jadi tumpul (rounded) */
+            /* Background putih dihapus, karena gambarnya sendiri sudah kotak putih */
+            display: block;
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .company-name {
+            font-weight: 800;
+            font-size: 1.2rem;
+            line-height: 1.1;
+        }
+
+        .since-text {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.8;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+            opacity: 0.9;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background-image: 
+                linear-gradient(rgba(0, 71, 171, 0.85), rgba(0, 46, 112, 0.9)), 
+                url('images/fotogudang.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 5% 3rem; 
+            color: white;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero-text h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .hero-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .feature-item i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        /* --- QUOTE FORM CARD --- */
+        .quote-card {
+            background: white;
+            color: var(--text-dark);
+            padding: 2.5rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        .quote-card h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .form-group { margin-bottom: 1rem; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            background: #f9f9f9;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: #fff;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-wa {
+            flex: 1;
+            padding: 12px;
+            background-color: var(--wa-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-wa:hover { background-color: #1ebc57; transform: translateY(-2px); }
+
+        .btn-email {
+            flex: 1;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-email:hover { background-color: #e0910f; transform: translateY(-2px); }
+
+        /* --- SERVICES SECTION (FIX TABRAKAN) --- */
+        .section-container {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid var(--primary-blue);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- EFEK FADE OUT IKON & JUDUL --- */
+        /* Kita tambahkan transisi opacity agar hilangnya mulus */
+        .service-icon, .service-card h4 {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1; /* Default muncul */
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h4 { 
+            font-size: 1.15rem; 
+            color: #444; 
+            font-weight: 700;
+        }
+
+        /* SAAT HOVER: Ikon & Judul jadi transparan (Hilang) */
+        .service-card:hover .service-icon,
+        .service-card:hover h4 {
+            opacity: 0;
+            transform: scale(0.8); /* Mengecil sedikit saat hilang */
+        }
+
+        /* --- POPUP OVERLAY --- */
+        .card-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, var(--primary-blue), rgba(0, 71, 171, 0.95));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: bottom 0.4s ease-in-out;
+            z-index: 10; /* Pastikan di atas elemen lain */
+        }
+
+        .service-card:hover .card-overlay {
+            bottom: 0;
+        }
+
+        .card-overlay p {
+            font-size: 0.95rem; /* Font agak diperbesar */
+            line-height: 1.6;
+            font-weight: 600; /* Ditebalkan biar jelas */
+        }
+        
+        .card-overlay span {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        /* --- PROCESS --- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .step::after {
+                content: '';
+                position: absolute;
+                top: 40px;
+                right: -50%;
+                width: 100%;
+                height: 2px;
+                background: #e0e0e0;
+                z-index: -1;
+            }
+            .step:last-child::after { display: none; }
+        }
+
+        .step-number {
+            background-color: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,71,171,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .step h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
+        .step p { font-size: 0.95rem; color: #666; }
+
+        .shipping-options {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .shipping-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .ship-icon-box {
+            background: #eef4ff;
+            color: var(--primary-blue);
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 3rem 5%;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 10px 25px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        .contact-btn:hover { background: white; color: var(--primary-blue); }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-container { flex-direction: column; }
+            .nav-links { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .step::after { display: none; }
+            .button-group { flex-direction: column; }
+            .logo-container { gap: 10px; }
+            .company-name { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI -->
+    <nav>
+        <div class="logo-container">
+            <img src="images/glalogotransparan.png" alt="Logo PT GLA" class="logo-img">
+            <div class="logo-text-wrapper">
+                <span class="company-name">PT. Gerak Lintas Arah</span>
+                <span class="since-text">Since 2002</span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Beranda</a>
+            <a href="#layanan">Layanan</a>
+            <a href="#carakerja">Cara Kerja</a>
+            <a href="#kontak">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h3>Import Door to Door Services</h3>
+                <h1>Solusi Import Profesional Singapore ke Jakarta</h1>
+                <p>
+                    PT Gerak Lintas Arah menghadirkan layanan logistik terintegrasi. 
+                    Kami menangani kerumitan bea cukai dan regulasi, sehingga Anda bisa fokus pada bisnis Anda.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Harga All-In (Transparan)</div>
+                    <div class="feature-item"><i class="fas fa-file-contract"></i> Pengurusan Dokumen Penuh</div>
+                    <div class="feature-item"><i class="fas fa-stopwatch"></i> Real-time Tracking 24 Jam</div>
+                    <div class="feature-item"><i class="fas fa-comments"></i> Konsultasi Import Gratis</div>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <h2>Minta Penawaran</h2>
+                <form action="https://formspree.io/f/mlglwjrq" method="POST" id="mainForm">
+                    <div class="form-group"><label>Nama Lengkap</label><input type="text" name="nama" id="nama" placeholder="Nama Anda / Perusahaan" required></div>
+                    <div class="form-group"><label>Email</label><input type="email" name="email" id="email" placeholder="email@perusahaan.com" required></div>
+                    <div class="form-group"><label>Nomor WhatsApp</label><input type="tel" name="phone" id="phone" placeholder="0812xxxx" required></div>
+                    <div class="form-group"><label>Jenis Barang</label><input type="text" name="barang" id="barang" placeholder="Contoh: Spareparts" required></div>
+                    <div class="form-group"><label>Estimasi Berat (Kg)</label><input type="number" name="berat" id="berat" placeholder="0" required></div>
+                    <div class="button-group">
+                        <button type="button" class="btn-wa" onclick="kirimKeWA()"><i class="fab fa-whatsapp"></i> Via WA</button>
+                        <button type="submit" class="btn-email"><i class="fas fa-envelope"></i> Via Email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- LAYANAN (FIXED) -->
+    <section id="layanan" class="section-container">
+        <h2 class="section-title">Spesialisasi Kargo</h2>
+        <p class="section-subtitle">Arahkan kursor untuk melihat contoh barang yang kami tangani.</p>
+        
+        <div class="services-grid">
+            <!-- Item 1 -->
+            <div class="service-card">
+                <i class="fas fa-laptop service-icon"></i>
+                <h4>IT Equipment</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Laptop, Server, PC Desktop, Monitor, Kabel Jaringan, Harddisk.</p>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="service-card">
+                <i class="fas fa-stethoscope service-icon"></i>
+                <h4>Medical Equipment</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Alat USG, Dental Unit, Alat Cek Darah, Kursi Roda, X-Ray Portable.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="service-card">
+                <i class="fas fa-flask service-icon"></i>
+                <h4>Laboratory Eq.</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Mikroskop, Centrifuge, Tabung Reaksi, Alat Ukur Presisi.</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="service-card">
+                <i class="fas fa-cogs service-icon"></i>
+                <h4>Spare Parts</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Mesin Pabrik, Gear, Valve, Sparepart Mobil/Motor, Baut & Mur.</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="service-card">
+                <i class="fas fa-leaf service-icon"></i>
+                <h4>Environmental Eq.</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Air Purifier, Filter Air, Alat Ukur Kualitas Udara, Panel Surya.</p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="service-card">
+                <i class="fas fa-vial service-icon"></i>
+                <h4>Chemicals</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Reagen Laboratorium, Bahan Baku Kosmetik, Pelarut Industri (Non-Dangerous).</p>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="service-card">
+                <i class="fas fa-recycle service-icon"></i>
+                <h4>Re-conditioned</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Mesin Bekas, Alat Elektronik Refurbished (Sesuai Regulasi).</p>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="service-card">
+                <i class="fas fa-suitcase service-icon"></i>
+                <h4>Personal Effects</h4>
+                <div class="card-overlay">
+                    <span>Contoh Barang:</span>
+                    <p>Pindahan Rumah, Baju, Tas, Sepatu, Buku, Barang Pribadi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARA KERJA -->
+    <section id="carakerja" class="section-container" style="background-color: white;">
+        <h2 class="section-title">Proses Pengiriman</h2>
+        <div class="process-steps">
+            <div class="step"><div class="step-number">1</div><h3>Purchasing</h3><p>Beli barang dari supplier manapun. Arahkan pengiriman ke gudang kami di Singapore.</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Dokumen</h3><p>Pastikan seller menyertakan Invoice, Packing List, dan AWB/Tracking Number.</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Notifikasi</h3><p>Infokan kepada tim admin kami mengenai detail pengiriman yang akan masuk.</p></div>
+            <div class="step"><div class="step-number">4</div><h3>Pengiriman</h3><p>Barang diproses dan dikirim ke alamat tujuan Anda di Jakarta.</p></div>
+        </div>
+
+        <h3 style="text-align:center; margin-bottom: 2rem; color: var(--primary-blue);">Opsi Pengiriman</h3>
+        <div class="shipping-options">
+            <div class="shipping-card">
+                <div class="ship-icon-box"><i class="fas fa-plane-departure"></i></div>
+                <div>
+                    <h3>Air Freight (Udara)</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Cepat & Efisien</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <p><strong>Lead Time:</strong> 5-7 Hari Kerja</p>
+                    <p><strong>Biaya:</strong> Per Kilogram (Kg)</p>
+                </div>
+            </div>
+            <div class="shipping-card">
+                <div class="ship-icon-box"><i class="fas fa-ship"></i></div>
+                <div>
+                    <h3>Sea Freight (Laut)</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Ekonomis untuk jumlah besar</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <p><strong>Lead Time:</strong> 2-3 Minggu</p>
+                    <p><strong>Biaya:</strong> Per Volume (M<sup>3</sup>)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak">
+        <div class="footer-content">
+            <h3>PT. Gerak Lintas Arah</h3>
+            <p>Your Trusted Logistics Partner Since 2002</p>
+            <a href="https://wa.me/6285810666658" target="_blank" class="contact-btn">
+                <i class="fab fa-whatsapp"></i> Hubungi Kami
+            </a>
+        </div>
+    </footer>
+
+    <!-- SCRIPT WA -->
+    <script>
+        function kirimKeWA() {
+            var nama = document.getElementById("nama").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var barang = document.getElementById("barang").value;
+            var berat = document.getElementById("berat").value;
+            if(nama == "" || barang == "") { alert("Mohon lengkapi data Nama dan Jenis Barang."); return; }
+            var nomorAdmin = "6285810666658"; 
+            var pesan = `Halo Admin GLA, saya ingin minta penawaran import.%0A%0A*Nama:* ${nama}%0A*Email:* ${email}%0A*No HP:* ${phone}%0A*Barang:* ${barang}%0A*Berat:* ${berat} Kg%0A%0AMohon infonya.`;
+            window.open(`https://wa.me/${nomorAdmin}?text=${pesan}`, '_blank');
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
