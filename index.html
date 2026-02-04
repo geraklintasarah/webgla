@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- 1. CSS VARIABLES & RESET --- */
         :root {
             --primary-blue: #0047AB; 
             --dark-blue: #002e70;
@@ -18,6 +18,12 @@
             --text-white: #ffffff;
             --text-dark: #333333;
             --bg-light: #f4f7f6;
+            --nav-height: 80px; /* Tinggi navigasi agar konsisten */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height); /* Agar saat klik menu, judul tidak ketutup navbar */
         }
 
         * {
@@ -33,13 +39,14 @@
             background-color: var(--bg-light);
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- NAVIGATION --- */
+        /* --- 2. NAVIGATION (STABIL & RESPONSIVE) --- */
         nav {
             background-color: var(--primary-blue);
-            padding: 0.8rem 5%;
+            height: var(--nav-height);
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -54,13 +61,12 @@
             align-items: center;
             gap: 15px;
             color: white;
+            z-index: 1001;
         }
 
         .logo-img {
-            /* REVISI LOGO: */
-            height: 50px; /* Ukuran diperbesar sedikit biar pas */
-            border-radius: 8px; /* Membuat sudut kotak putih jadi tumpul (rounded) */
-            /* Background putih dihapus, karena gambarnya sendiri sudah kotak putih */
+            height: 45px;
+            border-radius: 4px;
             display: block;
         }
 
@@ -72,50 +78,84 @@
 
         .company-name {
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.1;
         }
 
         .since-text {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 400;
             opacity: 0.8;
             font-style: italic;
-            letter-spacing: 0.5px;
         }
 
+        /* Menu Links */
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
-        .nav-links a {
+        .nav-links a.nav-item {
             color: var(--text-white);
             font-size: 0.95rem;
             font-weight: 500;
-            transition: 0.3s;
-            opacity: 0.9;
+            position: relative;
+            padding: 5px 0;
         }
 
-        .nav-links a:hover {
+        .nav-links a.nav-item:hover {
             color: var(--accent-color);
-            opacity: 1;
         }
 
-        /* --- HERO SECTION --- */
+        /* Tombol INSIGHT (Pill Shape & Stand Out) */
+        .nav-links .btn-insight {
+            border: 2px solid var(--accent-color);
+            padding: 8px 24px;
+            border-radius: 50px;
+            color: var(--accent-color) !important;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .nav-links .btn-insight:hover {
+            background-color: var(--accent-color);
+            color: var(--text-white) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(252, 163, 17, 0.4);
+        }
+        
+        .nav-links .btn-insight:hover i {
+            transform: rotate(-45deg); /* Efek panah naik */
+        }
+
+        /* Hamburger Menu (Untuk Mobile) */
+        .hamburger {
+            display: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* --- 3. HERO SECTION (FIXED BACKGROUND ISSUE) --- */
         .hero {
-            background-image: 
-                linear-gradient(rgba(0, 71, 171, 0.85), rgba(0, 46, 112, 0.9)), 
-                url('images/fotogudang.png'); 
+            /* Perbaikan: Hapus fixed attachment agar tidak berantakan di HP */
+            background: linear-gradient(rgba(0, 46, 112, 0.9), rgba(0, 71, 171, 0.8)), 
+                        url('images/fotogudang.png'); 
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
+            min-height: calc(100vh - var(--nav-height)); /* Full screen minus navbar */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 5% 3rem; 
+            padding: 4rem 5%; 
             color: white;
+            position: relative;
         }
 
         .hero-container {
@@ -147,6 +187,10 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
         }
 
         .hero-text p {
@@ -154,6 +198,7 @@
             font-size: 1.05rem;
             opacity: 0.95;
             line-height: 1.8;
+            max-width: 600px;
         }
 
         .features-grid {
@@ -176,15 +221,16 @@
             font-size: 1.2rem;
         }
 
-        /* --- QUOTE FORM CARD --- */
+        /* --- 4. QUOTE FORM CARD (SESUAI REQUEST) --- */
         .quote-card {
             background: white;
             color: var(--text-dark);
-            padding: 2.5rem;
-            border-radius: 8px;
+            padding: 2rem;
+            border-radius: 12px;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-top: 5px solid var(--accent-color);
         }
 
         .quote-card h2 {
@@ -208,7 +254,7 @@
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 0.95rem;
             background: #f9f9f9;
             transition: 0.3s;
@@ -218,6 +264,7 @@
             outline: none;
             border-color: var(--primary-blue);
             background: #fff;
+            box-shadow: 0 0 5px rgba(0,71,171,0.2);
         }
 
         .button-group {
@@ -232,7 +279,7 @@
             background-color: var(--wa-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -240,9 +287,8 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
-
         .btn-wa:hover { background-color: #1ebc57; transform: translateY(-2px); }
 
         .btn-email {
@@ -251,7 +297,7 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -259,12 +305,11 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
-
         .btn-email:hover { background-color: #e0910f; transform: translateY(-2px); }
 
-        /* --- SERVICES SECTION (FIX TABRAKAN) --- */
+        /* --- 5. SERVICES & GENERAL SECTIONS --- */
         .section-container {
             padding: 6rem 5%;
             max-width: 1200px;
@@ -276,7 +321,7 @@
             margin-bottom: 1rem;
             color: var(--primary-blue);
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .section-subtitle {
@@ -300,11 +345,11 @@
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             text-align: center;
-            border-top: 4px solid var(--primary-blue);
+            border-bottom: 4px solid var(--primary-blue);
             transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
-            height: 220px;
+            height: 240px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -312,44 +357,41 @@
         }
 
         .service-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
-        /* --- EFEK FADE OUT IKON & JUDUL --- */
-        /* Kita tambahkan transisi opacity agar hilangnya mulus */
         .service-icon, .service-card h4 {
             transition: opacity 0.3s ease, transform 0.3s ease;
-            opacity: 1; /* Default muncul */
+            opacity: 1; 
         }
 
         .service-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--primary-blue);
             margin-bottom: 1.5rem;
         }
 
         .service-card h4 { 
-            font-size: 1.15rem; 
+            font-size: 1.2rem; 
             color: #444; 
             font-weight: 700;
         }
 
-        /* SAAT HOVER: Ikon & Judul jadi transparan (Hilang) */
         .service-card:hover .service-icon,
         .service-card:hover h4 {
             opacity: 0;
-            transform: scale(0.8); /* Mengecil sedikit saat hilang */
+            transform: scale(0.8);
         }
 
-        /* --- POPUP OVERLAY --- */
+        /* POPUP OVERLAY */
         .card-overlay {
             position: absolute;
             bottom: -100%;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, var(--primary-blue), rgba(0, 71, 171, 0.95));
+            background: linear-gradient(to top, var(--primary-blue), var(--dark-blue));
             color: white;
             display: flex;
             flex-direction: column;
@@ -357,31 +399,18 @@
             align-items: center;
             padding: 20px;
             transition: bottom 0.4s ease-in-out;
-            z-index: 10; /* Pastikan di atas elemen lain */
+            z-index: 10;
         }
 
-        .service-card:hover .card-overlay {
-            bottom: 0;
-        }
+        .service-card:hover .card-overlay { bottom: 0; }
 
-        .card-overlay p {
-            font-size: 0.95rem; /* Font agak diperbesar */
-            line-height: 1.6;
-            font-weight: 600; /* Ditebalkan biar jelas */
-        }
-        
+        .card-overlay p { font-size: 0.95rem; line-height: 1.6; font-weight: 600; }
         .card-overlay span {
-            display: block;
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 5px;
+            display: block; font-size: 0.8rem; opacity: 0.9; margin-bottom: 10px;
+            text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px;
         }
 
-        /* --- PROCESS --- */
+        /* --- 6. PROCESS STEPS --- */
         .process-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -389,110 +418,71 @@
             margin-bottom: 5rem;
         }
 
-        .step {
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
+        .step { text-align: center; padding: 20px; position: relative; }
 
-        @media (min-width: 768px) {
+        @media (min-width: 992px) {
             .step::after {
-                content: '';
-                position: absolute;
-                top: 40px;
-                right: -50%;
-                width: 100%;
-                height: 2px;
-                background: #e0e0e0;
-                z-index: -1;
+                content: ''; position: absolute; top: 40px; right: -50%; width: 100%; height: 2px;
+                background: #e0e0e0; z-index: -1;
             }
             .step:last-child::after { display: none; }
         }
 
         .step-number {
-            background-color: var(--primary-blue);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(0,71,171,0.3);
-            position: relative;
-            z-index: 2;
+            background-color: var(--primary-blue); color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem; font-weight: bold; font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,71,171,0.3); position: relative; z-index: 2;
         }
 
         .step h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
         .step p { font-size: 0.95rem; color: #666; }
 
-        .shipping-options {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .shipping-options { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
 
         .shipping-card {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            background: white;
-            padding: 2.5rem;
-            border-radius: 10px;
-            border: 1px solid #eee;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
+            flex: 1; min-width: 300px; max-width: 500px; background: white; padding: 2.5rem;
+            border-radius: 12px; border: 1px solid #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex; align-items: flex-start; gap: 20px; transition: 0.3s;
         }
+        .shipping-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
 
         .ship-icon-box {
-            background: #eef4ff;
-            color: var(--primary-blue);
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
+            background: #eef4ff; color: var(--primary-blue); width: 60px; height: 60px;
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; flex-shrink: 0;
         }
 
-        /* --- FOOTER --- */
+        /* --- 7. FOOTER --- */
         footer {
-            background-color: var(--dark-blue);
-            color: white;
-            text-align: center;
-            padding: 3rem 5%;
+            background-color: var(--dark-blue); color: white; text-align: center; padding: 4rem 5% 2rem;
         }
-        
         .contact-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 10px 25px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 30px;
-            color: white;
-            transition: 0.3s;
+            display: inline-block; margin-top: 1.5rem; padding: 12px 30px;
+            border: 2px solid rgba(255,255,255,0.3); border-radius: 50px; color: white; transition: 0.3s;
         }
-        
-        .contact-btn:hover { background: white; color: var(--primary-blue); }
+        .contact-btn:hover { background: white; color: var(--primary-blue); border-color: white; }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.2rem; }
-            .hero-container { flex-direction: column; }
-            .nav-links { display: none; }
-            .features-grid { grid-template-columns: 1fr; }
-            .step::after { display: none; }
+        /* --- 8. MOBILE RESPONSIVE (PENTING) --- */
+        @media (max-width: 991px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-container { flex-direction: column; text-align: center; }
+            .features-grid { justify-content: center; text-align: left; }
+            .hero-text { margin-bottom: 2rem; }
+            
+            /* Navigasi Mobile */
+            .nav-links {
+                position: absolute; top: var(--nav-height); left: 0; width: 100%;
+                background-color: var(--dark-blue); flex-direction: column;
+                padding: 2rem 0; gap: 1.5rem; transform: translateY(-150%);
+                transition: transform 0.4s ease; z-index: 999;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { transform: translateY(0); }
+            .hamburger { display: block; }
+            
             .button-group { flex-direction: column; }
-            .logo-container { gap: 10px; }
-            .company-name { font-size: 1rem; }
+            .step::after { display: none; }
         }
     </style>
 </head>
@@ -507,11 +497,22 @@
                 <span class="since-text">Since 2002</span>
             </div>
         </div>
-        <div class="nav-links">
-            <a href="#home">Beranda</a>
-            <a href="#layanan">Layanan</a>
-            <a href="#carakerja">Cara Kerja</a>
-            <a href="#kontak">Kontak</a>
+
+        <!-- Tombol Hamburger (Agar menu bisa dibuka di HP) -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home" class="nav-item" onclick="toggleMenu()">Beranda</a>
+            <a href="#layanan" class="nav-item" onclick="toggleMenu()">Layanan</a>
+            <a href="#carakerja" class="nav-item" onclick="toggleMenu()">Cara Kerja</a>
+            <a href="#kontak" class="nav-item" onclick="toggleMenu()">Kontak</a>
+            
+            <!-- Tombol Insight -->
+            <a href="insight.html" class="btn-insight">
+                Insight <i class="fas fa-arrow-trend-up"></i>
+            </a>
         </div>
     </nav>
 
@@ -520,7 +521,7 @@
         <div class="hero-container">
             <div class="hero-text">
                 <h3>Import Door to Door Services</h3>
-                <h1>Solusi Import Profesional ke Jakarta</h1>
+                <h1>Solusi Import Profesional ke Destinasi Tujuan Anda!</h1>
                 <p>
                     PT Gerak Lintas Arah menghadirkan layanan logistik terintegrasi. 
                     Kami menangani kerumitan bea cukai dan regulasi, sehingga Anda bisa fokus pada bisnis Anda.
@@ -533,24 +534,54 @@
                 </div>
             </div>
 
+            <!-- FORM CARD (LENGKAP DENGAN EMAIL) -->
             <div class="quote-card">
                 <h2>Minta Penawaran</h2>
+                <!-- Action Formspree tetap ada untuk tombol Email -->
                 <form action="https://formspree.io/f/mlglwjrq" method="POST" id="mainForm">
-                    <div class="form-group"><label>Nama Lengkap</label><input type="text" name="nama" id="nama" placeholder="Nama Anda / Perusahaan" required></div>
-                    <div class="form-group"><label>Email</label><input type="email" name="email" id="email" placeholder="email@perusahaan.com" required></div>
-                    <div class="form-group"><label>Nomor WhatsApp</label><input type="tel" name="phone" id="phone" placeholder="0812xxxx" required></div>
-                    <div class="form-group"><label>Jenis Barang</label><input type="text" name="barang" id="barang" placeholder="Contoh: Spareparts" required></div>
-                    <div class="form-group"><label>Estimasi Berat (Kg)</label><input type="number" name="berat" id="berat" placeholder="0" required></div>
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="nama" id="nama" placeholder="Nama Anda / Perusahaan" required>
+                    </div>
+                    
+                    <!-- Input Email (Ada kembali) -->
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" id="email" placeholder="email@perusahaan.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <input type="tel" name="phone" id="phone" placeholder="0812xxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jenis Barang</label>
+                        <input type="text" name="barang" id="barang" placeholder="Contoh: Spareparts" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estimasi Berat (Kg)</label>
+                        <input type="number" name="berat" id="berat" placeholder="0" required>
+                    </div>
+
                     <div class="button-group">
-                        <button type="button" class="btn-wa" onclick="kirimKeWA()"><i class="fab fa-whatsapp"></i> Via WA</button>
-                        <button type="submit" class="btn-email"><i class="fas fa-envelope"></i> Via Email</button>
+                        <!-- Tombol WA (JavaScript) -->
+                        <button type="button" class="btn-wa" onclick="kirimKeWA()">
+                            <i class="fab fa-whatsapp"></i> Via WA
+                        </button>
+                        
+                        <!-- Tombol Email (Formspree Submit) -->
+                        <button type="submit" class="btn-email">
+                            <i class="fas fa-envelope"></i> Via Email
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </header>
 
-    <!-- LAYANAN (FIXED) -->
+    <!-- LAYANAN SECTION -->
     <section id="layanan" class="section-container">
         <h2 class="section-title">Spesialisasi Kargo</h2>
         <p class="section-subtitle">Arahkan kursor untuk melihat contoh barang yang kami tangani.</p>
@@ -612,7 +643,7 @@
                 <h4>Chemicals</h4>
                 <div class="card-overlay">
                     <span>Contoh Barang:</span>
-                    <p>Reagen Laboratorium, Bahan Baku Kosmetik, Pelarut Industri.</p>
+                    <p>Reagen Laboratorium, Bahan Baku Kosmetik, Pelarut Industri (Non-Dangerous).</p>
                 </div>
             </div>
 
@@ -681,26 +712,74 @@
             <a href="https://wa.me/6285810666658" target="_blank" class="contact-btn">
                 <i class="fab fa-whatsapp"></i> Hubungi Kami
             </a>
+            <p style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.5;">
+                &copy; 2026 PT Gerak Lintas Arah. All Rights Reserved.
+            </p>
         </div>
     </footer>
 
-    <!-- SCRIPT WA -->
+    <!-- SCRIPT WA & MENU -->
     <script>
+        // 1. Script Kirim ke WA
         function kirimKeWA() {
             var nama = document.getElementById("nama").value;
             var email = document.getElementById("email").value;
             var phone = document.getElementById("phone").value;
             var barang = document.getElementById("barang").value;
             var berat = document.getElementById("berat").value;
-            if(nama == "" || barang == "") { alert("Mohon lengkapi data Nama dan Jenis Barang."); return; }
+            
+            // Validasi sederhana
+            if(nama == "" || barang == "" || phone == "") { 
+                alert("Mohon lengkapi data Nama, No HP, dan Jenis Barang."); 
+                return; 
+            }
+            
             var nomorAdmin = "6285810666658"; 
             var pesan = `Halo Admin GLA, saya ingin minta penawaran import.%0A%0A*Nama:* ${nama}%0A*Email:* ${email}%0A*No HP:* ${phone}%0A*Barang:* ${barang}%0A*Berat:* ${berat} Kg%0A%0AMohon infonya.`;
+            
             window.open(`https://wa.me/${nomorAdmin}?text=${pesan}`, '_blank');
         }
+
+        // 2. Script Mobile Menu (Hamburger)
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger i');
+            
+            nav.classList.toggle('active');
+            
+            if(nav.classList.contains('active')) {
+                hamburger.classList.remove('fa-bars');
+                hamburger.classList.add('fa-times');
+            } else {
+                hamburger.classList.remove('fa-times');
+                hamburger.classList.add('fa-bars');
+            }
+        }
+
+        // 3. Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Mobile menu auto close saat diklik
+                    const nav = document.getElementById('navLinks');
+                    if(nav.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    // Scroll manual dengan offset navbar
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
     </script>
